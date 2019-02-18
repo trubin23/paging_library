@@ -26,6 +26,7 @@ class MainActivity : AppCompatActivity() {
         val pagedList = PagedList.Builder(dataSource, config)
             .setFetchExecutor(Executors.newSingleThreadExecutor())
             .setNotifyExecutor(MainThreadExecutor())
+            .setInitialKey(90)
             .build()
 
         val adapter = EmployeeAdapter(EmployeeDiffCallback())
