@@ -4,8 +4,10 @@ import android.annotation.SuppressLint
 import android.arch.paging.PagedList
 import android.os.Bundle
 import android.support.v7.app.AppCompatActivity
+import android.support.v7.widget.LinearLayoutManager
 import kotlinx.android.synthetic.main.activity_main.*
 import java.util.concurrent.Executors
+
 
 class MainActivity : AppCompatActivity() {
 
@@ -29,6 +31,10 @@ class MainActivity : AppCompatActivity() {
         val adapter = EmployeeAdapter(EmployeeDiffCallback())
         adapter.submitList(pagedList)
 
+        val linearLayoutManager = LinearLayoutManager(this)
+        linearLayoutManager.orientation = LinearLayoutManager.VERTICAL
+
+        recycler_view.layoutManager = linearLayoutManager
         recycler_view.adapter = adapter
     }
 }

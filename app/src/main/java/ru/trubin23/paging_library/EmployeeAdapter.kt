@@ -18,7 +18,6 @@ class EmployeeAdapter(diffCallback: DiffUtil.ItemCallback<Employee>) :
     }
 
     override fun onBindViewHolder(holder: EmployeeViewHolder, position: Int) {
-        Log.d("EmployeeAdapter", position.toString())
         holder.bind(getItem(position) ?: return)
     }
 
