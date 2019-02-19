@@ -11,8 +11,8 @@ class MyPositionDataSource(private val storage: EmployeeStorage) : PositionalDat
         Log.d(TAG, "loadInitial, requestedStartPosition = ${params.requestedStartPosition} " +
                     ", requestedLoadSize = ${params.requestedLoadSize}")
 
-        val result: List<Employee> = storage.getData(params.requestedStartPosition, params.requestedLoadSize)
-        callback.onResult(result, 0)
+        val employeeData = storage.getInitialData(params.requestedStartPosition, params.requestedLoadSize)
+        callback.onResult(employeeData.data, employeeData.startPosition)
     }
 
     override fun loadRange(params: LoadRangeParams, callback: LoadRangeCallback<Employee>) {

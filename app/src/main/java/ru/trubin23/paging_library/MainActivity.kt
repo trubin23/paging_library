@@ -19,7 +19,7 @@ class MainActivity : AppCompatActivity() {
 
         val config = PagedList.Config.Builder()
             .setEnablePlaceholders(false)
-            .setPageSize(10)
+            .setPageSize(11)
             .build()
 
         @SuppressLint("WrongThread")
