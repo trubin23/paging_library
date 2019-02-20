@@ -15,7 +15,11 @@ class MainActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
 
+        val mySourceFactory = MySourceFactory(EmployeeStorage())
+
         val dataSource = MyPositionDataSource(EmployeeStorage())
+
+        //val pagedListLiveData =
 
         val config = PagedList.Config.Builder()
             .setEnablePlaceholders(true)
