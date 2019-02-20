@@ -10,11 +10,13 @@ class EmployeeStorage {
         }
         val data: List<Employee> = getData(position, loadSize)
 
-        return EmployeeData(data, position)
+        return EmployeeData(data, position, NUMBER_OF_EMPLOYEES)
     }
 
     fun getData(position: Int, size: Int): List<Employee> {
         val employeeList = ArrayList<Employee>()
+
+        Thread.sleep(1000)
 
         for (index in position until position + size) {
             if (index >= NUMBER_OF_EMPLOYEES) {
@@ -27,6 +29,6 @@ class EmployeeStorage {
     }
 
     companion object {
-        const val NUMBER_OF_EMPLOYEES = 70
+        const val NUMBER_OF_EMPLOYEES = 100
     }
 }

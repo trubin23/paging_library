@@ -18,15 +18,14 @@ class MainActivity : AppCompatActivity() {
         val dataSource = MyPositionDataSource(EmployeeStorage())
 
         val config = PagedList.Config.Builder()
-            .setEnablePlaceholders(false)
-            .setPageSize(11)
+            .setEnablePlaceholders(true)
+            .setPageSize(4)
             .build()
 
         @SuppressLint("WrongThread")
         val pagedList = PagedList.Builder(dataSource, config)
             .setFetchExecutor(Executors.newSingleThreadExecutor())
             .setNotifyExecutor(MainThreadExecutor())
-            .setInitialKey(90)
             .build()
 
         val adapter = EmployeeAdapter(EmployeeDiffCallback())

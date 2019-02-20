@@ -12,7 +12,11 @@ class MyPositionDataSource(private val storage: EmployeeStorage) : PositionalDat
                     ", requestedLoadSize = ${params.requestedLoadSize}")
 
         val employeeData = storage.getInitialData(params.requestedStartPosition, params.requestedLoadSize)
-        callback.onResult(employeeData.data, employeeData.startPosition)
+        if (params.placeholdersEnabled) {
+            callback.onResult(employeeData.data, employeeData.startPosition, employeeData.count)
+        } else {
+            callback.onResult(employeeData.data, employeeData.startPosition)
+        }
     }
 
     override fun loadRange(params: LoadRangeParams, callback: LoadRangeCallback<Employee>) {
