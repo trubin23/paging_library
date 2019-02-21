@@ -3,6 +3,7 @@ package ru.trubin23.paging_library
 class EmployeeStorage {
 
     fun getInitialData(startPosition: Int, loadSize: Int): EmployeeData {
+        Thread.sleep(5000)
         val position = if (startPosition + loadSize < NUMBER_OF_EMPLOYEES) {
             startPosition
         } else {
@@ -29,6 +30,6 @@ class EmployeeStorage {
     }
 
     companion object {
-        const val NUMBER_OF_EMPLOYEES = 100
+        const val NUMBER_OF_EMPLOYEES = 1_000
     }
 }

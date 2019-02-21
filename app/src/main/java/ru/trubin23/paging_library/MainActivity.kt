@@ -1,6 +1,8 @@
 package ru.trubin23.paging_library
 
 import android.annotation.SuppressLint
+import android.arch.lifecycle.Observer
+import android.arch.paging.LivePagedListBuilder
 import android.arch.paging.PagedList
 import android.os.Bundle
 import android.support.v7.app.AppCompatActivity
@@ -17,23 +19,23 @@ class MainActivity : AppCompatActivity() {
 
         val mySourceFactory = MySourceFactory(EmployeeStorage())
 
-        val dataSource = MyPositionDataSource(EmployeeStorage())
-
-        //val pagedListLiveData =
-
         val config = PagedList.Config.Builder()
-            .setEnablePlaceholders(true)
-            .setPageSize(4)
+            .setEnablePlaceholders(false)
+            .setPageSize(10)
             .build()
 
-        @SuppressLint("WrongThread")
-        val pagedList = PagedList.Builder(dataSource, config)
+        val pagedListLiveData = LivePagedListBuilder(mySourceFactory, config)
             .setFetchExecutor(Executors.newSingleThreadExecutor())
-            .setNotifyExecutor(MainThreadExecutor())
             .build()
 
         val adapter = EmployeeAdapter(EmployeeDiffCallback())
-        adapter.submitList(pagedList)
+
+        pagedListLiveData.observe(this, Observer { pagedList->
+            run {
+                adapter.submitList(pagedList)
+            }
+        })
+
 
         val linearLayoutManager = LinearLayoutManager(this)
         linearLayoutManager.orientation = LinearLayoutManager.VERTICAL
